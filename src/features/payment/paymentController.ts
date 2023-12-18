@@ -11,7 +11,7 @@ import productService from "./paymentService"
  * @param res 
  * @returns 
  */
-export const productDetails=(req:Request,res:Response)=>{
+export const userPayment=(req:Request,res:Response)=>{
     const response=productService.userPayment(req.body)
     return response;
 }

@@ -1,8 +1,8 @@
 import {Router} from 'express';
-import {  } from './paymentController';
+import {userPayment  } from './paymentController';
 
 
 const productRoute=Router();
 
-productRoute.get("/payment",);
+productRoute.get("/payment",userPayment);
 
