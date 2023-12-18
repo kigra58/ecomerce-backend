@@ -1,8 +1,7 @@
-import {Router} from 'express';
-import { orderDetails, orderList } from './orderController';
+import { Router } from "express";
+import { orderDetails, orderList } from "./orderController";
 
+export const orderRoute = Router();
 
-const productRoute=Router();
-
-productRoute.get("/orders",orderList);
-productRoute.get("/order/:id",orderDetails);
+orderRoute.get("/orders", orderList);
+orderRoute.get("/order/:id", orderDetails);

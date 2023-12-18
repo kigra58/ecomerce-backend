@@ -1,5 +1,5 @@
-import productService from "./productService"
-import {Request,Response} from 'express'
+import productService from "./productService";
+import {Request,Response} from 'express';
 
 
 /**

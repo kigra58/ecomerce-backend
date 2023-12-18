@@ -1,8 +1,6 @@
-import {Router} from 'express';
-import {userPayment  } from './paymentController';
+import { Router } from "express";
+import { userPayment } from "./paymentController";
 
+export const paymentRoute = Router();
 
-const productRoute=Router();
-
-productRoute.get("/payment",userPayment);
-
+paymentRoute.get("/payment", userPayment);
