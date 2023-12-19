@@ -9,7 +9,7 @@ import {Request,Response} from 'express';
  * @returns 
  */
 export const productList=(req:Request,res:Response)=>{
-    const response=productService.productList(req.query)
+    const response=productService.productList(req.query);
     return res.status(200).send(response);
 }
 /**
@@ -19,7 +19,7 @@ export const productList=(req:Request,res:Response)=>{
  * @returns 
  */
 export const productDetails=(req:Request,res:Response)=>{
-    const response=productService.productDetails(req.query)
+    const response=productService.productDetails(req.params);
     return res.status(200).send(response);
 }
 /**
@@ -29,6 +29,6 @@ export const productDetails=(req:Request,res:Response)=>{
  * @returns 
  */
 export const addProduct=(req:Request,res:Response)=>{
-    const response=productService.addProduct(req.body)
+    const response=productService.addProduct(req.body);
     return res.status(200).send(response);
 }
