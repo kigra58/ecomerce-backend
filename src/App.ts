@@ -10,22 +10,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
-// app.use("/api", route);
-
-
-
-/**
- * @swagger
- * /home:
- *   get:
- *     description: Welcome to swagger-jsdoc!
- *     responses:
- *       200:
- *         description: Returns a mysterious string.
-*/
-app.get("/home",(req,res)=>{
-  res.status(200).send("Welcome");
-});
+app.use("/api", routes);
 
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
