@@ -5,10 +5,10 @@ import { orderRoute } from "./features/order/orderRoute";
 import { cartRoute } from "./features/cart/cartRoute";
 import { authRoute } from "./features/auth/authRoute";
 
-export const route = Router();
+export const routes = Router();
 
-route.use("/product", productRoute);
-route.use("/payment", paymentRoute);
-route.use("/order", orderRoute);
-route.use("/cart", cartRoute);
-route.use("/auth", authRoute);
+routes.use("/product", productRoute);
+routes.use("/payment", paymentRoute);
+routes.use("/order", orderRoute);
+routes.use("/cart", cartRoute);
+routes.use("/auth", authRoute);
