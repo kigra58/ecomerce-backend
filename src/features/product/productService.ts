@@ -26,7 +26,7 @@ class ProductService {
    } 
 
     /**
-     *  PRODUCT DETAILS
+     *  ADD NEW PRODUCT 
      */
     async addProduct ({})  {
      try {

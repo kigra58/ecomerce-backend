@@ -13,5 +13,5 @@ import productService from "./paymentService"
  */
 export const userPayment=(req:Request,res:Response)=>{
     const response=productService.userPayment(req.body)
-    return response;
+    return res.status(200).send(response);
 }

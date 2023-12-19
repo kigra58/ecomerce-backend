@@ -9,7 +9,7 @@ import { Request, Response } from "express";
  */
 export const getCartItems = (req: Request, res: Response) => {
   const response = cartService.getCartItems(req.query);
-  return response;
+  return res.status(200).send(response);
 };
 
 /**
@@ -20,7 +20,7 @@ export const getCartItems = (req: Request, res: Response) => {
  */
 export const updateCartItems = (req: Request, res: Response) => {
   const response = cartService.updateCartItems(req.query);
-  return response;
+  return res.status(200).send(response);
 };
 
 /**
@@ -31,5 +31,5 @@ export const updateCartItems = (req: Request, res: Response) => {
  */
 export const deleteCartItem = (req: Request, res: Response) => {
   const response = cartService.deleteCartItem(req.body);
-  return response;
+  return res.status(200).send(response);
 };

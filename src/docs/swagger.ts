@@ -18,8 +18,7 @@ const doc = {
     title: "CloudAgent Apis", // by default: 'REST API'
     description: "API for Managing queue calls", // by default: ''
     contact: {
-      name: "API Support",
-      email: "rajputankit22@gmail.com",
+     
     },
   },
   host: config.swagger.host, // by default: 'localhost:3000'

@@ -10,7 +10,7 @@ import {Request,Response} from 'express'
  */
 export const orderList=(req:Request,res:Response)=>{
     const response=productService.orderList(req.query)
-    return response;
+    return res.status(200).send(response);
 }
 /**
  * PRODUCT DETAILS
@@ -20,5 +20,5 @@ export const orderList=(req:Request,res:Response)=>{
  */
 export const orderDetails=(req:Request,res:Response)=>{
     const response=productService.orderDetails(req.query)
-    return response;
+    return res.status(200).send(response);
 }

@@ -10,7 +10,7 @@ import {Request,Response} from 'express';
  */
 export const productList=(req:Request,res:Response)=>{
     const response=productService.productList(req.query)
-    return response;
+    return res.status(200).send(response);
 }
 /**
  * PRODUCT DETAILS
@@ -20,7 +20,7 @@ export const productList=(req:Request,res:Response)=>{
  */
 export const productDetails=(req:Request,res:Response)=>{
     const response=productService.productDetails(req.query)
-    return response;
+    return res.status(200).send(response);
 }
 /**
  * PRODUCT LIST
@@ -30,5 +30,5 @@ export const productDetails=(req:Request,res:Response)=>{
  */
 export const addProduct=(req:Request,res:Response)=>{
     const response=productService.addProduct(req.body)
-    return response;
+    return res.status(200).send(response);
 }

@@ -2,8 +2,9 @@
 interface IAPIResponse{
   success:boolean;
   message:string;
-  data:[]
-  error:null|undefined
+  data:[];
+  error:null|undefined;
+  statusCode?:number;
 }
 
 export const apiResponse:IAPIResponse={
