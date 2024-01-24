@@ -1,17 +1,16 @@
-
-
-import {Request,Response} from 'express'
-import productService from "./paymentService"
-
-
+import { Request, Response } from "express";
+import productService from "./paymentService";
 
 /**
- * PRODUCT DETAILS
- * @param req 
- * @param res 
- * @returns 
+ * USER PAYMENT
+ * @param req
+ * @param res
+ * @returns
  */
-export const userPayment=(req:Request,res:Response)=>{
-    const response=productService.userPayment(req.body)
-    return res.status(200).send(response);
-}
+export const userPayment = (req: Request, res: Response) => {
+  const response = productService.userPayment(req.body);
+  return res.status(200).send(response);
+};
+
+
+

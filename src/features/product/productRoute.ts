@@ -3,7 +3,6 @@ import { productList, productDetails, addProduct } from "./productController";
 
 export const productRoute = Router();
 
-
 /**
  * @swagger
  *  /api/product/products:
@@ -12,7 +11,7 @@ export const productRoute = Router();
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
-*/
+ */
 productRoute.get("/products", productList);
 
 /**
@@ -23,7 +22,7 @@ productRoute.get("/products", productList);
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
-*/
+ */
 productRoute.get("/product/:id", productDetails);
 
 /**
@@ -34,5 +33,16 @@ productRoute.get("/product/:id", productDetails);
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
-*/
+ */
 productRoute.post("/add-product", addProduct);
+
+/**
+ * @swagger
+ *  /api/product/delete-product:
+ *   get:
+ *     description: delete product
+ *     responses:
+ *       200:
+ *         description: Returns a mysterious string.
+ */
+productRoute.delete("/delete-product", addProduct);

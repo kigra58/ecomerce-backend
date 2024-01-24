@@ -8,7 +8,7 @@ import { Request, Response } from "express";
  * @returns
  */
 export const getCartItems = (req: Request, res: Response) => {
-  const response = cartService.getCartItems(req.query);
+  const response = cartService.getCartItems(req.params);
   return res.status(200).send(response);
 };
 
@@ -19,7 +19,7 @@ export const getCartItems = (req: Request, res: Response) => {
  * @returns
  */
 export const updateCartItems = (req: Request, res: Response) => {
-  const response = cartService.updateCartItems(req.query);
+  const response = cartService.updateCartItems(req.body);
   return res.status(200).send(response);
 };
 

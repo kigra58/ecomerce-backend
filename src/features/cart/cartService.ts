@@ -1,9 +1,12 @@
+import { ParamsDictionary } from "express-serve-static-core";
+
 class CartService {
   /**
-   *  PRODUCT LIST
+   *  CART ITEMS
    */
-  async getCartItems({}) {
+  async getCartItems(params: ParamsDictionary) {
     try {
+      const { userId } = params;
     } catch (error) {
       console.error(error);
     }
@@ -12,7 +15,7 @@ class CartService {
   /**
    *  UPDATE CART ITEMS
    */
-  async updateCartItems({}) {
+  async updateCartItems({ userId }: { userId: number }) {
     try {
     } catch (error) {
       console.error(error);
