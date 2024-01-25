@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { productList, productDetails, addProduct } from "./productController";
+import { productList, productDetails, addProduct, deleteProduct } from "./productController";
 
 export const productRoute = Router();
 
@@ -23,12 +23,12 @@ productRoute.get("/products", productList);
  *       200:
  *         description: Returns a mysterious string.
  */
-productRoute.get("/product/:id", productDetails);
+productRoute.get("/:id", productDetails);
 
 /**
  * @swagger
  *  /api/product/add-product:
- *   get:
+ *   post:
  *     description: add new product
  *     responses:
  *       200:
@@ -39,10 +39,10 @@ productRoute.post("/add-product", addProduct);
 /**
  * @swagger
  *  /api/product/delete-product:
- *   get:
+ *   delete:
  *     description: delete product
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
  */
-productRoute.delete("/delete-product", addProduct);
+productRoute.delete("/delete-product", deleteProduct);

@@ -1,5 +1,7 @@
 import { ParamsDictionary } from "express-serve-static-core";
 import { IAPIResponse, IProduct } from "../../interfaces";
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
 class ProductService {
   private response: IAPIResponse | undefined;
@@ -9,39 +11,76 @@ class ProductService {
    */
   async productList({}) {
     try {
-      const arr = [{ id: 101 }, { id: 102 }, { id: 103 }, { id: 104 }];
-      this.response = {
-        success: true,
-        message: "",
-        data: arr,
-        error: null,
+      const list=await prisma.product.findMany();
+ 
+      if(list){
+        this.response={
+          success:true,
+          message:"products list found",
+          data:list
+        }
+      }else{
+        this.response={
+          success:false,
+          message:"unable to found product list",
+          data:[]
+        }
       };
-      return this.response;
     } catch (error) {
       console.error(error);
     }
+    return this.response;
   }
 
   /**
    *  PRODUCT DETAILS
    */
   async productDetails(params: ParamsDictionary) {
-    const { productId } = params;
     try {
-      console.log("productId", productId);
+      const data=await prisma.product.findUnique({
+        where:{id:Number(params.id)}
+      });
+      console.log("product details",data);  
+      if(data){ 
+        this.response={
+          success:true,
+          message:"product found",
+          data:[data]
+        }
+      }else{
+        this.response={
+          success:false,
+          message:"Unable to found product",
+        }
+      };
     } catch (error) {
       console.error(error);
-    }
+    };
+    return this.response;
   }
 
   /**
    *  ADD NEW PRODUCT
    */
-  async addProduct({ title }: IProduct) {
+  async addProduct(data: IProduct) {
     try {
+     data=await prisma.product.create({ data});
+    if(data){
+      this.response={
+        success:true,
+        message:"Data inserted succesfully",
+        data:[data]
+      }
+    }else{
+       this.response={
+        success:false,
+        message:"Unable insert data"
+       }
+    };  
     } catch (error) {
       console.error(error);
-    }
+    };
+    return this.response;
   }
 
   /**

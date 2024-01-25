@@ -6,16 +6,13 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
-
 
 model Post {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title     String   @db.VarChar(255)
   content   String?
   published Boolean  @default(false)
   author    User     @relation(fields: [authorId], references: [id])
@@ -35,4 +32,14 @@ model User {
   name    String?
   posts   Post[]
   profile Profile?
+}
+
+model Product {
+  id          Int    @id @default(autoincrement())
+  title       String
+  description String
+  price       Int
+  category    String
+  image       String
+  rating      String
 }

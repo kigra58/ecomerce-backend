@@ -1,8 +1,8 @@
 export interface IAPIResponse {
   success: boolean;
   message: string;
-  data: unknown[];
-  error: null | undefined;
+  data?: unknown[];
+  error?: null
   statusCode?: number;
 }
 
@@ -13,10 +13,10 @@ export interface IProduct {
   description: string;
   category: string;
   image: string;
-  rating: IRating;
+  rating: string;
 }
 
-export interface IRating {
-  rate: number;
-  count: number;
-}
+// export interface IRating {
+//   rate: number;
+//   count: number;
+// }
