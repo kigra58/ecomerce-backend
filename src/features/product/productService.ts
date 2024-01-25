@@ -88,11 +88,23 @@ class ProductService {
    */
   async deleteProduct(params: ParamsDictionary) {
     try {
-      const { productId } = params;
-      console.log("productId", productId);
+        const deleteData=await prisma.product.delete({
+          where:{id:Number(params.id)}
+        });
+      if(deleteData){
+        this.response={
+          success:true,
+          message:"data deleted successfully"
+        };
+      }else{
+        this.response={
+          success:false,
+          message:"unable to delete"
+        };
+      };
     } catch (error) {
       console.error(error);
-    }
+    };
   }
 }
 
