@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import { updateUserDetails, userDetails } from './userController';
+import { updateUserDetails, userDetails, userList } from './userController';
 
 
 const userRoute=Router();
@@ -28,11 +28,11 @@ userRoute.patch("/update",updateUserDetails)
 
 /**
  * @swagger
- *  /api/user/update:
+ *  /api/user/list:
  *   get:
  *     description: get update user details
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
  */
-userRoute.get("/users",)
+userRoute.get("/users",userList)
