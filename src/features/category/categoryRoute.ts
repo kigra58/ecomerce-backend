@@ -13,7 +13,7 @@ const categoryRoute = Router();
 /**
  * @swagger
  *  /api/category/create:
- *   get:
+ *   post:
  *     description: get new category
  *     responses:
  *       200:
@@ -53,7 +53,7 @@ categoryRoute.delete("/delete", deleteCategory);
 /**
  * @swagger
  *  /api/category/update:
- *   get:
+ *   delete:
  *     description: get updated category
  *     responses:
  *       200:
@@ -63,7 +63,7 @@ categoryRoute.patch("/update", updateCategory);
 /**
  * @swagger
  *  /api/category/category-products:
- *   get:
+ *   update:
  *     description: get all products from this category
  *     responses:
  *       200:

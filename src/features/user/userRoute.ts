@@ -1,8 +1,7 @@
-import {Router} from 'express'
-import { updateUserDetails, userDetails, userList } from './userController';
+import { Router } from "express";
+import { updateUserDetails, userDetails, userList } from "./userController";
 
-
-const userRoute=Router();
+const userRoute = Router();
 
 /**
  * @swagger
@@ -13,18 +12,18 @@ const userRoute=Router();
  *       200:
  *         description: Returns a mysterious string.
  */
-userRoute.get("/:userId",userDetails)
+userRoute.get("/:userId", userDetails);
 
 /**
  * @swagger
  *  /api/user/update:
- *   get:
+ *   patch:
  *     description: get update user details
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
  */
-userRoute.patch("/update",updateUserDetails)
+userRoute.patch("/update", updateUserDetails);
 
 /**
  * @swagger
@@ -35,4 +34,4 @@ userRoute.patch("/update",updateUserDetails)
  *       200:
  *         description: Returns a mysterious string.
  */
-userRoute.get("/users",userList)
+userRoute.get("/list", userList);

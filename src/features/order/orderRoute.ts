@@ -6,7 +6,7 @@ export const orderRoute = Router();
 /**
  * @swagger
  *  /api/order/create:
- *   get:
+ *   post:
  *     description: get all order list for particular user
  *     responses:
  *       200:
@@ -34,4 +34,4 @@ orderRoute.get("/list", orderList);
  *       200:
  *         description: Returns a mysterious string.
  */
-orderRoute.get("/:id", orderDetails);
+orderRoute.get("/:orderId", orderDetails);
