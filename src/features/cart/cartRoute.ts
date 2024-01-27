@@ -9,31 +9,31 @@ export const cartRoute = Router();
 
 /**
  * @swagger
- *  /api/cart/cart-item:
+ *  /api/cart/list:
  *   get:
  *     description: get all cart items
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
  */
-cartRoute.get("cart-items", getCartItems);
+cartRoute.get("/list", getCartItems);
 /**
  * @swagger
- *  /api/cart/update-cart-items:
+ *  /api/cart/update:
  *   get:
  *     description: get updated cart items
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
  */
-cartRoute.patch("update-cart-items", updateCartItems);
+cartRoute.patch("/update", updateCartItems);
 /**
  * @swagger
- *  /api/cart/delete-cart-item:
+ *  /api/cart/delete:
  *   get:
  *     description: get success message
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
  */
-cartRoute.delete("delete-cart-item", deleteCartItem);
+cartRoute.delete("/delete", deleteCartItem);

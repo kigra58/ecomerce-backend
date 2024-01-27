@@ -2,7 +2,18 @@ import productService from "./orderService";
 import { Request, Response } from "express";
 
 /**
- * PRODUCT LIST
+ * CREATE NEW ORDER
+ * @param req
+ * @param res
+ * @returns
+ */
+export const createNewOrder = (req: Request, res: Response) => {
+  const response = productService.createNewOrder(req.body);
+  return res.status(200).send(response);
+};
+
+/**
+ * ORDER LIST
  * @param req
  * @param res
  * @returns
@@ -12,7 +23,7 @@ export const orderList = (req: Request, res: Response) => {
   return res.status(200).send(response);
 };
 /**
- * PRODUCT DETAILS
+ * ORDER DETAILS
  * @param req
  * @param res
  * @returns

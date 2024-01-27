@@ -1,17 +1,30 @@
 import { Router } from "express";
-import { orderDetails, orderList } from "./orderController";
+import { orderDetails, orderList, createNewOrder } from "./orderController";
 
 export const orderRoute = Router();
+
 /**
  * @swagger
- *  /api/order/list:
+ *  /api/order/create:
  *   get:
- *     description: get all cart items
+ *     description: get all order list for particular user
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
  */
-orderRoute.get("/orders", orderList);
+orderRoute.get("/create", createNewOrder);
+
+/**
+ * @swagger
+ *  /api/order/list:
+ *   get:
+ *     description: get all order list for particular user
+ *     responses:
+ *       200:
+ *         description: Returns a mysterious string.
+ */
+orderRoute.get("/list", orderList);
+
 /**
  * @swagger
  *  /api/order/details/:id:
@@ -21,4 +34,4 @@ orderRoute.get("/orders", orderList);
  *       200:
  *         description: Returns a mysterious string.
  */
-orderRoute.get("/order/:id", orderDetails);
+orderRoute.get("/:id", orderDetails);
