@@ -8,7 +8,7 @@ import {
   getAllProductsByCategory,
 } from "./categoryController";
 
-const categoryRoute = Router();
+export const categoryRoute = Router();
 
 /**
  * @swagger
@@ -32,7 +32,7 @@ categoryRoute.post("/create", addNewCategory);
 categoryRoute.get("/list", categoryList);
 /**
  * @swagger
- *  /api/category/details
+ *  /api/category/details:
  *   get:
  *     description: get category details
  *     responses:

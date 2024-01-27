@@ -12,8 +12,31 @@ class ProductCategory {
     description: string;
     parentCategory: string;
   }) {
+    console.log("===========yyyyyyyyy");
     try {
-      const addNewCategory = await prisma;
+      const catArr: any = [
+        {
+          title: "electronics",
+
+        },
+        {
+          title: "women's clothing",
+    
+        },
+        {
+          title: "men's clothing",
+          
+        },
+        {
+          title: "jewelery",
+       
+        },
+      ];
+
+      const addNewCategory = await prisma.productCategory.createMany({
+        data: catArr,
+      });
+      console.log("======addNewCategory", addNewCategory);
     } catch (error) {
       console.error(error);
     }

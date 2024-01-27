@@ -2,7 +2,7 @@ export interface IAPIResponse {
   success: boolean;
   message: string;
   data?: unknown[];
-  error?: null
+  error?: null;
   statusCode?: number;
 }
 
@@ -11,7 +11,7 @@ export interface IProduct {
   title: string;
   price: number;
   description: string;
-  category: string;
+  category_id: number;
   image: string;
   rating: string;
 }

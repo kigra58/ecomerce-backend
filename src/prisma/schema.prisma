@@ -70,8 +70,8 @@ model Product {
 model ProductCategory {
   id              Int       @id @default(autoincrement())
   title           String    @unique
-  parent_category String
-  description     String
+  parent_category String?
+  description     String?
   created_at      DateTime  @default(now())
   updated_at      DateTime  @default(now())
   product         Product[]
