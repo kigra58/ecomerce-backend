@@ -2,7 +2,6 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 // migrateCommand: npx prisma migrate dev --name init
-// second Migrate Command :npx prisma migrate dev --name added_job_title
 
 generator client {
   provider = "prisma-client-js"
@@ -14,79 +13,92 @@ datasource db {
 }
 
 model User {
-  id         Int      @id @default(autoincrement())
+  id         Int           @id @default(autoincrement())
   first_name String
   last_name  String
-  email      String   @unique
+  email      String        @unique
   password   String
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now())
+  created_at DateTime      @default(now())
+  updated_at DateTime      @default(now())
+  address    UserAddress[]
+  payment    UserPayment[]
+  cart       Cart?
+  Order      Order[]
 }
 
 model UserAddress {
   id           Int    @id @default(autoincrement())
-  user_id      Int
+  user_id      Int    
   country      String
   state        String
   city         String
   street       String
   postal_code  Int
-  address_type String
-  mobile       BigInt
+  address_type String 
+  mobile       BigInt @unique
+  user         User   @relation(fields: [user_id], references: [id])
 }
 
 model Product {
-  id          Int    @id @default(autoincrement())
-  title       String
-  description String
-  price       Int
-  category    String
-  image       String
-  rating      String
+  id              Int             @id @default(autoincrement())
+  category_id     Int             @unique
+  title           String
+  description     String
+  price           Int
+  image           String
+  rating          String
+  ProductCategory ProductCategory @relation(fields: [category_id], references: [id])
 }
 
 model ProductCategory {
-  id              Int      @id @default(autoincrement())
-  title           String
+  id              Int       @id @default(autoincrement())
+  title           String    @unique
   parent_category String
   description     String
-  created_at      DateTime @default(now())
-  updated_at      DateTime @default(now())
+  created_at      DateTime  @default(now())
+  updated_at      DateTime  @default(now())
+  product         Product[]
 }
 
 model Cart {
   id         Int      @id @default(autoincrement())
-  user_id    Int
+  user_id    Int      @unique
   product_id Int
   quantity   Int
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
+  userId     Int
+  user       User     @relation(fields: [user_id], references: [id])
 }
 
 model UserPayment {
   id             Int      @id @default(autoincrement())
   user_id        Int
-  transaction_id String
+  transaction_id String   @unique
   method         String
-  status         String
+  status         String // success,failled ,pending
   amount         Int
   created_at     DateTime @default(now())
   updated_at     DateTime @default(now())
+  user           User     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
 
 model Order {
-  id         Int      @id @default(autoincrement())
-  user_id    Int
-  payment_id Int
-  total      Int
-  status     String
-  created_at DateTime @default(now())
+  id           Int            @id @default(autoincrement())
+  user_id      Int
+  payment_id   Int
+  total        Int
+  status       String
+  created_at   DateTime       @default(now())
+  user         User           @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  OrderHistory OrderHistory[]
 }
 
 model OrderHistory {
   id         Int      @id @default(autoincrement())
-  order_id   Int
-  product_id Int
+  order_id   Int      @unique
+  product_id Int      
   qauntity   Int
   created_at DateTime @default(now())
+  order      Order    @relation(fields: [order_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
