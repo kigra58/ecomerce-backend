@@ -13,7 +13,9 @@ class ProductService {
     try {
       const list = await prisma.product.findMany();
 
-      if (list) {
+      console.log("====list", list);
+
+      if (list && list.length > 0) {
         this.response = {
           success: true,
           message: "products list found",
@@ -64,17 +66,17 @@ class ProductService {
    */
   async addProduct(data: IProduct) {
     try {
-      data = await prisma.product.create({ data });
-      if (data) {
+      const newProduct = await prisma.product.createMany({ data });
+      if (newProduct) {
         this.response = {
           success: true,
-          message: "Data inserted succesfully",
+          message: "Add New Product succesfully",
           data: [data],
         };
       } else {
         this.response = {
           success: false,
-          message: "Unable insert data",
+          message: "Unable to add new Product",
         };
       }
     } catch (error) {

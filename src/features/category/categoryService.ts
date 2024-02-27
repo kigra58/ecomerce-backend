@@ -17,23 +17,19 @@ class ProductCategory {
       const catArr: any = [
         {
           title: "electronics",
-
         },
         {
           title: "women's clothing",
-    
         },
         {
           title: "men's clothing",
-          
         },
         {
           title: "jewelery",
-       
         },
       ];
 
-      const addNewCategory = await prisma.productCategory.createMany({
+      const addNewCategory = await prisma.category.createMany({
         data: catArr,
       });
       console.log("======addNewCategory", addNewCategory);
