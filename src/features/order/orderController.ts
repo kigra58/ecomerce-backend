@@ -7,8 +7,8 @@ import { Request, Response } from "express";
  * @param res
  * @returns
  */
-export const createNewOrder = (req: Request, res: Response) => {
-  const response = productService.createNewOrder(req.body);
+export const createNewOrder = async(req: Request, res: Response) => {
+  const response =await productService.createNewOrder(req.body);
   return res.status(200).send(response);
 };
 
@@ -18,8 +18,8 @@ export const createNewOrder = (req: Request, res: Response) => {
  * @param res
  * @returns
  */
-export const orderList = (req: Request, res: Response) => {
-  const response = productService.orderList(req.query);
+export const orderList =async (req: Request, res: Response) => {
+  const response =await productService.orderList(req.query);
   return res.status(200).send(response);
 };
 /**
@@ -28,7 +28,7 @@ export const orderList = (req: Request, res: Response) => {
  * @param res
  * @returns
  */
-export const orderDetails = (req: Request, res: Response) => {
-  const response = productService.orderDetails(req.params);
+export const orderDetails = async(req: Request, res: Response) => {
+  const response =await productService.orderDetails(req.params);
   return res.status(200).send(response);
 };

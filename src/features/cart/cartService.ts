@@ -1,5 +1,5 @@
 import { ParamsDictionary } from "express-serve-static-core";
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 class CartService {
@@ -8,9 +8,7 @@ class CartService {
    */
   async getCartItems(params: ParamsDictionary) {
     try {
-      // const data=await prisma.order.findUnique({
-      //   where:{user_id:Number(params.userId)}
-      // })
+      console.log("first==========",params);
     } catch (error) {
       console.error(error);
     }
@@ -19,9 +17,10 @@ class CartService {
   /**
    *  UPDATE CART ITEMS
    */
-  async updateCartItems({ userId }: { userId: number }) {
+  async updateCartItems(data:any) {
     try {
-
+      // return "Hello";
+      console.log("=====>>>>>data",data);
     } catch (error) {
       console.error(error);
     }
@@ -30,7 +29,13 @@ class CartService {
   /**
    *   DELETE ITEM
    */
-  async deleteCartItem({userId,productId}:{userId:number,productId:number}) {
+  async deleteCartItem({
+    userId,
+    productId,
+  }: {
+    userId: number;
+    productId: number;
+  }) {
     try {
       // const result=await prisma.cart.delete({
       //   where:{user_id:Number(userId),product_id:Number(productId)}

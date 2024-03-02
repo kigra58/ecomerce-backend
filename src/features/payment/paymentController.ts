@@ -7,8 +7,8 @@ import paymentService from "./paymentService";
  * @param res
  * @returns
  */
-export const createPayment = (req: Request, res: Response) => {
-  const response = paymentService.createPayment(req.body);
+export const createPayment = async (req: Request, res: Response) => {
+  const response = await paymentService.createPayment(req.body);
   return res.status(200).send(response);
 };
 
@@ -18,8 +18,8 @@ export const createPayment = (req: Request, res: Response) => {
  * @param res
  * @returns
  */
-export const paymentList = (req: Request, res: Response) => {
-  const response = paymentService.paymentList(req.query);
+export const paymentList = async (req: Request, res: Response) => {
+  const response = await paymentService.paymentList(req.query);
   return res.status(200).send(response);
 };
 /**
@@ -28,8 +28,8 @@ export const paymentList = (req: Request, res: Response) => {
  * @param res
  * @returns
  */
-export const paymentDetails = (req: Request, res: Response) => {
-  const response = paymentService.paymentDetails(req.params);
+export const paymentDetails = async (req: Request, res: Response) => {
+  const response = await paymentService.paymentDetails(req.params);
   return res.status(200).send(response);
 };
 /**
@@ -38,7 +38,7 @@ export const paymentDetails = (req: Request, res: Response) => {
  * @param res
  * @returns
  */
-export const updatePayment = (req: Request, res: Response) => {
-  const response = paymentService.updatePayment(req.params);
+export const updatePayment = async (req: Request, res: Response) => {
+  const response = await paymentService.updatePayment(req.params);
   return res.status(200).send(response);
 };

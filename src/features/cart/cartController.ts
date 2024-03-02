@@ -7,8 +7,8 @@ import { Request, Response } from "express";
  * @param res
  * @returns
  */
-export const getCartItems = (req: Request, res: Response) => {
-  const response = cartService.getCartItems(req.params);
+export const getCartItems =async (req: Request, res: Response) => {
+  const response =await cartService.getCartItems(req.params);
   return res.status(200).send(response);
 };
 
@@ -18,8 +18,8 @@ export const getCartItems = (req: Request, res: Response) => {
  * @param res
  * @returns
  */
-export const updateCartItems = (req: Request, res: Response) => {
-  const response = cartService.updateCartItems(req.body);
+export const updateCartItems =async (req: Request, res: Response) => {
+  const response =await cartService.updateCartItems(req.body);
   return res.status(200).send(response);
 };
 
@@ -29,7 +29,7 @@ export const updateCartItems = (req: Request, res: Response) => {
  * @param res
  * @returns
  */
-export const deleteCartItem = (req: Request, res: Response) => {
-  const response = cartService.deleteCartItem(req.body);
+export const deleteCartItem =async (req: Request, res: Response) => {
+  const response =await cartService.deleteCartItem(req.body);
   return res.status(200).send(response);
 };

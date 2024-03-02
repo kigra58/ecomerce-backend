@@ -7,8 +7,8 @@ import categoryService from "./categoryService";
  * @param res
  * @returns
  */
-export const addNewCategory = (req: Request, res: Response) => {
-  const response = categoryService.addNewCategory(req.body);
+export const addNewCategory = async (req: Request, res: Response) => {
+  const response = await categoryService.addNewCategory(req.body);
   return res.status(200).send(response);
 };
 /**
@@ -17,8 +17,8 @@ export const addNewCategory = (req: Request, res: Response) => {
  * @param res
  * @returns
  */
-export const categoryList = (req: Request, res: Response) => {
-  const response = categoryService.getAllCategory(req.query);
+export const categoryList = async (req: Request, res: Response) => {
+  const response = await categoryService.getAllCategory(req.query);
   return res.status(200).send(response);
 };
 
@@ -28,8 +28,8 @@ export const categoryList = (req: Request, res: Response) => {
  * @param res
  * @returns
  */
-export const categoryDetails = (req: Request, res: Response) => {
-  const response = categoryService.getCategoryDetails(req.params);
+export const categoryDetails = async (req: Request, res: Response) => {
+  const response = await categoryService.getCategoryDetails(req.params);
   return res.status(200).send(response);
 };
 
@@ -39,8 +39,8 @@ export const categoryDetails = (req: Request, res: Response) => {
  * @param res
  * @returns
  */
-export const getAllProductsByCategory = (req: Request, res: Response) => {
-  const response = categoryService.getAllProductByCategory(req.params);
+export const getAllProductsByCategory = async (req: Request, res: Response) => {
+  const response = await categoryService.getAllProductByCategory(req.params);
   return res.status(200).send(response);
 };
 
@@ -50,8 +50,8 @@ export const getAllProductsByCategory = (req: Request, res: Response) => {
  * @param res
  * @returns
  */
-export const updateCategory = (req: Request, res: Response) => {
-  const response = categoryService.updateCategory(req.params);
+export const updateCategory = async (req: Request, res: Response) => {
+  const response = await categoryService.updateCategory(req.params);
   return res.status(200).send(response);
 };
 
@@ -61,7 +61,7 @@ export const updateCategory = (req: Request, res: Response) => {
  * @param res
  * @returns
  */
-export const deleteCategory = (req: Request, res: Response) => {
-  const response = categoryService.deleteCategory(req.params);
+export const deleteCategory = async (req: Request, res: Response) => {
+  const response = await categoryService.deleteCategory(req.params);
   return res.status(200).send(response);
 };

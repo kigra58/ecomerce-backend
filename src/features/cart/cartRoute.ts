@@ -7,6 +7,8 @@ import {
 
 export const cartRoute = Router();
 
+// console.log("cartRoutecartRoute");
+
 /**
  * @swagger
  *  /api/cart/list:
@@ -20,13 +22,13 @@ cartRoute.get("/list", getCartItems);
 /**
  * @swagger
  *  /api/cart/update:
- *   get:
+ *   post:
  *     description: get updated cart items
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
  */
-cartRoute.patch("/update", updateCartItems);
+cartRoute.post("/update", updateCartItems);
 /**
  * @swagger
  *  /api/cart/delete:

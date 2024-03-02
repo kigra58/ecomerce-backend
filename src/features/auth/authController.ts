@@ -7,8 +7,8 @@ import AuthService from "./authService";
  * @param res
  * @returns
  */
-export const login = (req: Request, res: Response) => {
-  const response = AuthService.login(req.body);
+export const login = async (req: Request, res: Response) => {
+  const response = await AuthService.login(req.body);
   return res.status(200).send(response);
 };
 
@@ -18,8 +18,8 @@ export const login = (req: Request, res: Response) => {
  * @param res
  * @returns
  */
-export const signup = (req: Request, res: Response) => {
-  const response = AuthService.signup(req.body);
+export const signup = async (req: Request, res: Response) => {
+  const response = await AuthService.signup(req.body);
   return res.status(200).send(response);
 };
 
@@ -29,8 +29,8 @@ export const signup = (req: Request, res: Response) => {
  * @param res
  * @returns
  */
-export const forgotPassword = (req: Request, res: Response) => {
-  const response = AuthService.forgotPassword(req.body);
+export const forgotPassword = async (req: Request, res: Response) => {
+  const response = await AuthService.forgotPassword(req.body);
   return res.status(200).send(response);
 };
 
@@ -40,7 +40,7 @@ export const forgotPassword = (req: Request, res: Response) => {
  * @param res
  * @returns
  */
-export const changePassword = (req: Request, res: Response) => {
-  const response = AuthService.changePassword(req.body);
+export const changePassword = async (req: Request, res: Response) => {
+  const response = await AuthService.changePassword(req.body);
   return res.status(200).send(response);
 };

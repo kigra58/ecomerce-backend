@@ -7,8 +7,9 @@ import { Request, Response } from "express";
  * @param res
  * @returns
  */
-export const productList = (req: Request, res: Response) => {
-  const response = productService.productList(req.query);
+export const productList =async (req: Request, res: Response) => {
+  const response =await productService.productList(req.query);
+  console.log("responseresponseresponse",response);
   return res.status(200).send(response);
 };
 /**
@@ -17,8 +18,8 @@ export const productList = (req: Request, res: Response) => {
  * @param res
  * @returns
  */
-export const productDetails = (req: Request, res: Response) => {
-  const response = productService.productDetails(req.params);
+export const productDetails =async (req: Request, res: Response) => {
+  const response =await productService.productDetails(req.params);
   return res.status(200).send(response);
 };
 /**
@@ -27,8 +28,8 @@ export const productDetails = (req: Request, res: Response) => {
  * @param res
  * @returns
  */
-export const addProduct = (req: Request, res: Response) => {
-  const response = productService.addProduct(req.body);
+export const addProduct =async (req: Request, res: Response) => {
+  const response =await productService.addProduct(req.body);
   return res.status(200).send(response);
 };
 /**
@@ -37,7 +38,7 @@ export const addProduct = (req: Request, res: Response) => {
  * @param res
  * @returns
  */
-export const deleteProduct = (req: Request, res: Response) => {
-  const response = productService.deleteProduct(req.params);
+export const deleteProduct =async (req: Request, res: Response) => {
+  const response =await productService.deleteProduct(req.params);
   return res.status(200).send(response);
 };

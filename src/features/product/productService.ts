@@ -13,7 +13,7 @@ class ProductService {
     try {
       const list = await prisma.product.findMany();
 
-      console.log("====list", list);
+      console.log("====list", list[0]);
 
       if (list && list.length > 0) {
         this.response = {
