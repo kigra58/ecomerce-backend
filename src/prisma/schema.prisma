@@ -5,6 +5,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["relationJoins"]
 }
 
 datasource db {
@@ -22,7 +23,7 @@ model User {
   updated_at DateTime      @default(now())
   address    UserAddress[]
   payment    UserPayment[]
-  cart       Cart?
+  cart       Cart[]
   Order      Order[]
 }
 
@@ -66,6 +67,7 @@ model Product {
   rating          String
   categories      Category[]
   ProductCategory ProductCategory[]
+  Cart Cart[]
 }
 
 model Category {
@@ -90,13 +92,13 @@ model ProductCategory {
 
 model Cart {
   id         Int      @id @default(autoincrement())
-  user_id    Int      @unique
-  product_id Int
+  user_id    Int      
+  product_id Int      @unique
   quantity   Int
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
-  userId     Int
   user       User     @relation(fields: [user_id], references: [id])
+  product       Product     @relation(fields: [product_id], references: [id])
 }
 
 model UserPayment {

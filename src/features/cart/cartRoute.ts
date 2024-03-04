@@ -7,7 +7,6 @@ import {
 
 export const cartRoute = Router();
 
-// console.log("cartRoutecartRoute");
 
 /**
  * @swagger
@@ -18,7 +17,7 @@ export const cartRoute = Router();
  *       200:
  *         description: Returns a mysterious string.
  */
-cartRoute.get("/list", getCartItems);
+cartRoute.get("/list/:userId", getCartItems);
 /**
  * @swagger
  *  /api/cart/update:

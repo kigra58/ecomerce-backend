@@ -9,7 +9,6 @@ import { Request, Response } from "express";
  */
 export const productList =async (req: Request, res: Response) => {
   const response =await productService.productList(req.query);
-  console.log("responseresponseresponse",response);
   return res.status(200).send(response);
 };
 /**
