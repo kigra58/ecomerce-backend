@@ -48,8 +48,9 @@ class AuthService {
    */
   async login({email,password}:{email:string;password:string}) {
     try {
+      
       if(email && password){
-        const existUser=await prisma.user.findUnique({
+        const existUser=await prisma.user.findFirst({
           where:{email}
         });
         if(existUser){   
@@ -57,7 +58,8 @@ class AuthService {
           if(isVarify){
             this.response={
               success:true,
-              message:"User login successfully"
+              message:"User login successfully",
+              data:[existUser]
             };
           }else{
             this.response={
@@ -80,6 +82,7 @@ class AuthService {
     } catch (error) {
       console.error(error);
     };
+    return this.response;
   };
 
   /**
@@ -100,6 +103,7 @@ class AuthService {
     } catch (error) {
       console.error(error);
     };
+    return this.response;
   };
 
   /**
@@ -140,6 +144,8 @@ class AuthService {
     } catch (error) {
       console.error(error);
     };
+    return this.response;
+
   };
 }
 
