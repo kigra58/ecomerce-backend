@@ -1,11 +1,6 @@
 import {ZodTypeAny, z} from "zod";
 
 
-interface IQuery {
-  key: string;
-  errorMsg: string;
-}
-
 
 export const passwordValidation=(key:string,errorMsg:string):ZodTypeAny=>{
  return z.object({
@@ -34,8 +29,12 @@ export const paramsIdValidation=(key:string,errorMsg:string):ZodTypeAny=>{
 };
 
 
-// export const queryValidation=(...arg:IQuery[]) =>{
-//  return arg.forEach((it)=>z.object({
-//      [it.key]: z.number({required_error: it.errorMsg})
-//   }))
-// };
+export const listValidation=(filterEnum:any):ZodTypeAny=>{
+ return z.object({
+   offset:z.number({required_error: "Offset is required"}), 
+   filter:z.nativeEnum(filterEnum), 
+   search:z.string().optional(), 
+  });
+};
+
+

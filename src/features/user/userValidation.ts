@@ -1,13 +1,12 @@
 import { z } from "zod";
-import { paramsIdValidation } from "../../commonValidation";
+import { listValidation, paramsIdValidation } from "../../commonValidation";
+import { userListFilterENUM } from "../../constant";
 
 export const userIdValidation = z.object({
     userId:paramsIdValidation("userId","User id is required"), 
 });
 
+export const userListValidation = listValidation(userListFilterENUM);
 
-export const userListValidation = z.object({
-    userId:paramsIdValidation("userId","User id is required"), 
-});
 
 
