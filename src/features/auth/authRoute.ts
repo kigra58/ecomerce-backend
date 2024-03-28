@@ -6,7 +6,8 @@ import {
   signup,
 } from "./authController";
 import { validate } from "../../middleware/requestValidation";
-import { changePasswordValidation, forgotPasswordValidation, loginValidation, singupValidation } from "./authValidation";
+import { changePasswordValidation, forgotPasswordValidation,
+ loginValidation, singupValidation } from "./authValidation";
 
 export const authRoute = Router();
 

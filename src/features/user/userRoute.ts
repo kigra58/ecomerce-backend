@@ -1,5 +1,7 @@
 import { Router } from "express";
 import { updateUserDetails, userDetails, userList } from "./userController";
+import { validate } from "../../middleware/requestValidation";
+import { userIdValidation } from "./userValidation";
 
 const userRoute = Router();
 
@@ -12,7 +14,7 @@ const userRoute = Router();
  *       200:
  *         description: Returns a mysterious string.
  */
-userRoute.get("/:userId", userDetails);
+userRoute.get("/:userId",validate(userIdValidation), userDetails);
 
 /**
  * @swagger
