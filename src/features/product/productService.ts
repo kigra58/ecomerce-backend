@@ -39,7 +39,8 @@ class ProductService {
    */
   async productDetails(params: ParamsDictionary) {
     try {
-      const data = await prisma.product.findUnique({
+      const data = await prisma.product.
+      findUnique({
         where: { id: Number(params.id) },
       });
       console.log("product details", data);
