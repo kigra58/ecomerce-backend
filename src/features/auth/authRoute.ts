@@ -5,6 +5,8 @@ import {
   login,
   signup,
 } from "./authController";
+import { validate } from "../../middleware/requestValidation";
+import { changePasswordValidation, forgotPasswordValidation, loginValidation, singupValidation } from "./authValidation";
 
 export const authRoute = Router();
 
@@ -17,7 +19,7 @@ export const authRoute = Router();
  *       200:
  *         description: Returns a mysterious string.
  */
-authRoute.post("/login", login);
+authRoute.post("/login",validate(loginValidation), login);
 /**
  * @swagger
  *  /api/auth/signup:
@@ -27,7 +29,7 @@ authRoute.post("/login", login);
  *       200:
  *         description: Returns a mysterious string.
  */
-authRoute.post("/signup", signup);
+authRoute.post("/signup",validate(singupValidation), signup);
 /**
  * @swagger
  *  /api/auth/forgot-password:
@@ -37,7 +39,8 @@ authRoute.post("/signup", signup);
  *       200:
  *         description: Returns a mysterious string.
  */
-authRoute.post("/forgot-password", forgotPassword);
+authRoute.post("/forgot-password",validate(forgotPasswordValidation),
+forgotPassword);
 /**
  * @swagger
  *  /api/auth/change-password:
@@ -47,4 +50,4 @@ authRoute.post("/forgot-password", forgotPassword);
  *       200:
  *         description: Returns a mysterious string.
  */
-authRoute.post("/change-password", changePassword);
+authRoute.post("/change-password",validate(changePasswordValidation) ,changePassword);
