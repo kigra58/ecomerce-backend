@@ -10,8 +10,24 @@ class OrderService {
   /**
    *  CREATE NEW OREDER
    */
-  async createNewOrder({}: { userId: number }) {
+  async createNewOrder({userId}: { userId: number }) {
     try {
+      /**
+       * 1. FIND THE CART DATA
+       * 2. CREATE PAYMENT FOR THIS CART
+       * 3. ADD ENTRY IN ORDERS TABLE AND ORDER HISTORY TABLE
+       */
+      const findCartData=await prisma.cart.findMany({
+        where: { user_id: userId },
+      });
+
+      if(findCartData && findCartData.length > 0) {
+         /**
+          *  1. CREATE STRIPE PAYMENT
+          *  2. ADD ENTRY IN PAYMENTS TABLE
+          *  3. 
+          */
+      };
     } catch (error) {
       console.error(error);
     }
