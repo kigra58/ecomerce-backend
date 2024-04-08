@@ -14,7 +14,9 @@ const userRoute = Router();
  *       200:
  *         description: Returns a mysterious string.
  */
-userRoute.get("/:userId",validate(userIdValidation), userDetails);
+userRoute.get("/:userId",
+// validate(userIdValidation),
+ userDetails);
 
 /**
  * @swagger

@@ -20,7 +20,9 @@ export const authRoute = Router();
  *       200:
  *         description: Returns a mysterious string.
  */
-authRoute.post("/login",validate(loginValidation), login);
+authRoute.post("/login",
+// validate(loginValidation),
+ login);
 /**
  * @swagger
  *  /api/auth/signup:
@@ -30,7 +32,9 @@ authRoute.post("/login",validate(loginValidation), login);
  *       200:
  *         description: Returns a mysterious string.
  */
-authRoute.post("/signup",validate(singupValidation), signup);
+authRoute.post("/signup",
+// validate(singupValidation),
+ signup);
 /**
  * @swagger
  *  /api/auth/forgot-password:
@@ -40,7 +44,8 @@ authRoute.post("/signup",validate(singupValidation), signup);
  *       200:
  *         description: Returns a mysterious string.
  */
-authRoute.post("/forgot-password",validate(forgotPasswordValidation),
+authRoute.post("/forgot-password",
+// validate(forgotPasswordValidation),
 forgotPassword);
 /**
  * @swagger
@@ -51,4 +56,6 @@ forgotPassword);
  *       200:
  *         description: Returns a mysterious string.
  */
-authRoute.post("/change-password",validate(changePasswordValidation) ,changePassword);
+authRoute.post("/change-password",
+// validate(changePasswordValidation) ,
+changePassword);
