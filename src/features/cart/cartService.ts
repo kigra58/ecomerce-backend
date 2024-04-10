@@ -12,6 +12,7 @@ class CartService {
    */
   async getCartItems(params: ParamsDictionary) {
     try {
+      if(params && params.userId){
       const result = await prisma.cart.findMany({
         where: { user_id: +params.userId },
         relationLoadStrategy: "join",
@@ -32,6 +33,12 @@ class CartService {
           message: "cart items not found",
         };
       }
+    }else{
+      this.response = {
+        success: false,
+        message: "user not found",
+      };
+    }
     } catch (error) {
       console.error(error);
     }
