@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import {hash,genSalt, compare} from 'bcryptjs'
 import { IAPIResponse } from "../../interfaces";
+import { generateToken } from "../../middleware/generateToken";
 const prisma = new PrismaClient();
 class AuthService {
   private response: IAPIResponse | undefined;
@@ -51,16 +52,31 @@ class AuthService {
       
       if(email && password){
         const existUser=await prisma.user.findFirst({
-          where:{email}
+          where:{email},
+          select:{
+            id:true,
+            first_name:true,
+            last_name:true,
+            email:true,
+            created_at:true
+          }
         });
         if(existUser){   
           const isVarify=await compare(password,await hash(password,await genSalt(10)));
           if(isVarify){
-            this.response={
-              success:true,
-              message:"User login successfully",
-              data:[existUser]
-            };
+            const token=generateToken(existUser.id.toString(),existUser.email);
+            if(token &&token!==""){
+              this.response={
+                success:true,
+                message:"User login successfully",
+                data:[{...existUser,token}]
+              };
+            }else{
+              this.response={
+                success:false,
+                message:"Token not generated"
+              }
+            }
           }else{
             this.response={
               success:false,
