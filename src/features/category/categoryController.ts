@@ -8,7 +8,7 @@ import categoryService from "./categoryService";
  * @returns
  */
 export const addNewCategory = async (req: Request, res: Response) => {
-  const response = await categoryService.addNewCategory(req.body);
+  const response = await categoryService.addNewCategory(req.file);
   return res.status(200).send(response);
 };
 /**

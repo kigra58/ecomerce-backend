@@ -2,37 +2,30 @@ import { PrismaClient } from "@prisma/client";
 import { IAPIResponse } from "../../interfaces";
 import { ParamsDictionary } from "express-serve-static-core";
 import { ParsedQs } from "qs";
+import { readCSVFile } from "../../utils/helper";
 
 const prisma = new PrismaClient();
 class ProductCategory {
   private response: IAPIResponse | undefined;
 
-  async addNewCategory({}: {
-    title: string;
-    description: string;
-    parentCategory: string;
-  }) {
-    console.log("===========yyyyyyyyy");
-    try {
-      const catArr: any = [
-        {
-          title: "electronics",
-        },
-        {
-          title: "women's clothing",
-        },
-        {
-          title: "men's clothing",
-        },
-        {
-          title: "jewelery",
-        },
-      ];
+  // async addNewCategory({}: {
+  //   title: string;
+  //   description: string;
+  //   parentCategory: string;
+  // }) {
 
-      const addNewCategory = await prisma.category.createMany({
-        data: catArr,
-      });
-      console.log("======addNewCategory", addNewCategory);
+  async addNewCategory(file: Express.Multer.File | undefined) {
+    try {
+      if(file){
+  
+        const data=await readCSVFile(file.filename);
+        console.log("datadata",data)
+        // const addNewCategory = await prisma.category.createMany({
+        //   data: (data as { title: string; description: string; parentCategory: string}[]),
+        // });
+        // console.log("======addNewCategory", addNewCategory);
+      };
+
     } catch (error) {
       console.error(error);
     }

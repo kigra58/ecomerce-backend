@@ -1,9 +1,6 @@
 import { ParamsDictionary } from "express-serve-static-core";
-import { IAPIResponse, IProduct } from "../../interfaces";
+import { IAPIResponse, IAddNewProduct} from "../../interfaces";
 import { PrismaClient } from "@prisma/client";
-import {pipeline} from "stream"
-import fs from "fs"
-import path from "path"
 import { readCSVFile } from "../../utils/helper";
 const prisma = new PrismaClient();
 
@@ -72,23 +69,32 @@ class ProductService {
   // async addProduct(data: IProduct) {
   async addProduct(file: Express.Multer.File | undefined) {
     try {
-      // const newProduct = await prisma.product.createMany({ data });
-      // if (newProduct) {
-      //   this.response = {
-      //     success: true,
-      //     message: "Add New Product succesfully",
-      //     data: [data],
-      //   };
-      // } else {
-      //   this.response = {
-      //     success: false,
-      //     message: "Unable to add new Product",
-      //   };
-      // }
-     if(file){
-      const fileData=readCSVFile(file.stream)
-      console.log("fileDatafileData",fileData);
-    }
+      if(file){
+        const data=await readCSVFile(file.filename) ;
+        if (data) {
+          const newProduct = await prisma.product.createMany({ 
+            data: data
+
+           });
+          if(newProduct){
+            this.response = {
+              success: true,
+              message: "Add New Product succesfully",
+              data
+            };
+          }else{
+            this.response = {
+              success: false,
+              message: "Unable to add new product",
+            };
+          }
+        } else {
+          this.response = {
+            success: false,
+            message: "Unable fetch data csv file",
+          };
+        }
+      }
     } catch (error) {
       console.error(error);
     }

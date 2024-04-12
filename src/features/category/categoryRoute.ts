@@ -7,6 +7,7 @@ import {
   updateCategory,
   getAllProductsByCategory,
 } from "./categoryController";
+import multer from "multer";
 
 export const categoryRoute = Router();
 
@@ -19,7 +20,8 @@ export const categoryRoute = Router();
  *       200:
  *         description: Returns a mysterious string.
  */
-categoryRoute.post("/create", addNewCategory);
+const upload = multer({ dest: "src/utils/uploads" }).single("file");
+categoryRoute.post("/create", upload,addNewCategory);
 /**
  * @swagger
  *  /api/category/list:

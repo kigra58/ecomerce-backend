@@ -1,3 +1,5 @@
+import { Omit } from "@prisma/client/runtime/library";
+
 export interface IAPIResponse {
   success: boolean;
   message: string;
@@ -15,6 +17,11 @@ export interface IProduct {
   image: string;
   rating: string;
 }
+
+
+export type IAddNewProduct = Omit<IProduct, "id">;
+
+
 
 // export interface IRating {
 //   rate: number;
