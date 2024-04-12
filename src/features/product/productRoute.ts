@@ -40,7 +40,7 @@ productRoute.get("/:id", productDetails);
  *       200:
  *         description: Returns a mysterious string.
  */
-const upload = multer({ dest: "src/uploads" }).single("file");
+const upload = multer({ dest: "src/utils/uploads" }).single("file");
 productRoute.post("/create",upload ,addProduct);
 
 /**
