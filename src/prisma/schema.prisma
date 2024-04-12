@@ -2,6 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 // migrateCommand: npx prisma migrate dev --name init
+// npx prisma db push
+// npx prisma migrate dev --create-only
 
 generator client {
   provider        = "prisma-client-js"
@@ -59,8 +61,8 @@ model UserAddress {
   street       String
   postal_code  Int
   address_type AddressType
-  mobile       BigInt      @unique
-  user         User        @relation(fields: [user_id], references: [id])
+  mobile       String      @unique
+  user         User     @relation(fields: [user_id], references: [id])
 }
 
 model Product {

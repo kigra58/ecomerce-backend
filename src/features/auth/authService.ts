@@ -20,7 +20,7 @@ class AuthService {
             }
           });
           if(newUser){
-            this.response={
+          this.response={
           success:true,
           message:"User Register Successfully",
           data:[newUser]
@@ -53,18 +53,16 @@ class AuthService {
       if(email && password){
         const existUser=await prisma.user.findFirst({
           where:{email},
-          select:{
-            id:true,
-            first_name:true,
-            last_name:true,
-            email:true,
-            created_at:true
-          }
+          relationLoadStrategy: "join",
+          include: {
+            address: true,
+          },
         });
+        console.log("existUserexistUser",existUser);
         if(existUser){   
           const isVarify=await compare(password,await hash(password,await genSalt(10)));
           if(isVarify){
-            const token=generateToken(existUser.id.toString(),existUser.email);
+            const token=generateToken(`${existUser.id}`,existUser.email);
             if(token &&token!==""){
               this.response={
                 success:true,

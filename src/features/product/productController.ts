@@ -28,7 +28,8 @@ export const productDetails =async (req: Request, res: Response) => {
  * @returns
  */
 export const addProduct =async (req: Request, res: Response) => {
-  const response =await productService.addProduct(req.body);
+  // const response =await productService.addProduct(req.body);
+  const response =await productService.addProduct(req.file);
   return res.status(200).send(response);
 };
 /**

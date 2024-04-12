@@ -1,4 +1,5 @@
 import { Router } from "express";
+import multer from "multer"
 import {
   productList,
   productDetails,
@@ -39,7 +40,8 @@ productRoute.get("/:id", productDetails);
  *       200:
  *         description: Returns a mysterious string.
  */
-productRoute.post("/create", addProduct);
+const upload = multer({ dest: "src/uploads" }).single("file");
+productRoute.post("/create",upload ,addProduct);
 
 /**
  * @swagger
