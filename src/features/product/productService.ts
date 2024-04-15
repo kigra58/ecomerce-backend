@@ -1,7 +1,7 @@
 import { ParamsDictionary } from "express-serve-static-core";
-import { IAPIResponse, IAddNewProduct} from "../../interfaces";
+import { IAPIResponse, IAddNewProduct, ICSVROW, ICat, IProduct} from "../../interfaces";
 import { PrismaClient } from "@prisma/client";
-import { readCSVFile } from "../../utils/helper";
+import { getUniqueTitles, readCSVFile } from "../../utils/helper";
 const prisma = new PrismaClient();
 
 class ProductService {
@@ -70,17 +70,121 @@ class ProductService {
   async addProduct(file: Express.Multer.File | undefined) {
     try {
       if(file){
-        const data=await readCSVFile(file.filename) ;
-        if (data) {
-          const newProduct = await prisma.product.createMany({ 
-            data: data
+        const data: ICSVROW[]=await readCSVFile(file.filename);
+        if (data && data.length>0) {
+          // console.log("dat==========>",data);
+          // const insertData= await Promise.all(data.map(async (item) => {
+          //   try {
+          //     console.log("item==========>",item)
+          //       const catId = await prisma.category.create({
+          //           data: {
+          //               title: item.title,
+          //               description: null,
+          //               parent_category: null
+          //           }
+          //       });
 
-           });
-          if(newProduct){
+          //       console.log("catId=========>",catId)
+        
+          //       if (catId) {
+          //          const newProduct= await prisma.product.create({
+          //               data: {
+          //                   title: item.title,
+          //                   description: item.description,
+          //                   price: +item.price,
+          //                   category_id: catId.id,
+          //                   image: item.image,
+          //                   rating: JSON.stringify({
+          //                       rate: item.rating__rate,
+          //                       count: item.rating__count
+          //                   })
+          //               }
+          //           });
+          //         console.log("newProduct========>",newProduct);  
+          //       }
+          //   } catch (error) {
+          //       console.error("Error processing item:", item, error);
+          //   }
+          // }));
+          
+          const tempCategory:any[]=[];
+          // const tempProduct:any[]=[]
+
+          getUniqueTitles(data).forEach(async (item)=>{
+            // tempCategory.push({
+            //   title: item.category,
+            //   description: "",
+            //   parent_category: ""
+            // })
+             const insert= await prisma.category.create({
+              data:{
+                title: item.category,
+                description: null,
+                parent_category: null
+              }
+             });
+          });
+
+          // console.log("tempCategory",tempCategory);
+          
+          // const createNewCategory=
+          
+          // const res= await prisma.category.createMany({
+          //   data:tempCategory
+          // });
+          
+          data.forEach(async(item)=>{
+           const cartId=await prisma.category.findFirst({where:{
+            title:item.category
+           }});
+           console.log("cartId",cartId)
+           if(cartId){
+            //  tempProduct.push({
+            //    title: item.title,
+            //    description: item.description,
+            //    price: +item.price,
+            //    category_id: cartId.id,
+            //    image: item.image,
+            //    rating: JSON.stringify({
+            //      rate: item.rating__rate,
+            //      count: item.rating__count
+            //    })
+            //  });
+             
+            const newP=await prisma.product.create({
+              data:{
+                title: item.title,
+                description: item.description,
+                price: +item.price,
+                category_id: cartId.id,
+                image: item.image,
+                rating: JSON.stringify({
+                  rate: item.rating__rate,
+                  count: item.rating__count
+                })
+              }
+            });
+            console.log("newPnewP",newP);
+           }
+         });
+         
+        // const createNewProduct=await prisma.product.createMany({
+        //      data:tempProduct
+        // });
+        // console.log("createNewProduct",createNewProduct);
+       
+        //  if(tempProduct && tempProduct.length>0){
+        //    const createNewProduct=await prisma.product.createMany({
+        //      data:tempProduct
+        //    });
+        //  }
+
+
+
+          if(data){
             this.response = {
               success: true,
               message: "Add New Product succesfully",
-              data
             };
           }else{
             this.response = {
