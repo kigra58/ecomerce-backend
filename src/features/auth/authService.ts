@@ -51,15 +51,20 @@ class AuthService {
     try {
       
       if(email && password){
-        const existUser=await prisma.user.findFirst({
+        const existUser=await prisma.user.findUnique({
           where:{email},
-          relationLoadStrategy: "join",
-          include: {
-            address: true,
-          },
         });
-        console.log("existUserexistUser",existUser);
+        
         if(existUser){   
+          const allData=await prisma.user.findFirst({
+            where:{id:existUser.id},
+            relationLoadStrategy: "join",
+            include: {
+              address: true,
+            },
+          })
+          console.log("allDataallDataallData",allData);
+          
           const isVarify=await compare(password,await hash(password,await genSalt(10)));
           if(isVarify){
             const token=generateToken(`${existUser.id}`,existUser.email);
@@ -67,7 +72,7 @@ class AuthService {
               this.response={
                 success:true,
                 message:"User login successfully",
-                data:[{...existUser,token}]
+                data:[{...allData,token}]
               };
             }else{
               this.response={
