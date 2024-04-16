@@ -55,6 +55,7 @@ enum AddressType {
 model UserAddress {
   id           Int         @id @default(autoincrement())
   user_id      Int
+  flat_number  String
   country      String
   state        String
   city         String
