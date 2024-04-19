@@ -34,17 +34,62 @@ class ProductCategory {
 
   async getAllCategory(query: ParsedQs) {
     try {
+      const list =await prisma.category.findMany();
+      if(list && list.length>0){
+        this.response={
+          success:true,
+          message:"category list found",
+          data:list
+        }
+      }else{
+        this.response={ 
+          success:false,
+          message:"category list not found",
+        }
+      }
     } catch (error) {
       console.error();
     }
     return this.response;
   }
 
-  async getAllProductByCategory(params: ParamsDictionary) {
+  async getAllProductByCategory(query: ParsedQs) {
     try {
+      let list;
+      if(query.categoryId&&+query.categoryId>0 ){
+          console.log("iffffffffqueryqueryquery",query.categoryId)
+          list=await prisma.product.findMany({
+            where:{
+              category_id:+query.categoryId
+            },
+            // take:5,
+            // skip:1
+          });
+        }else{
+          console.log("elseeeeeequeryqueryquery",query.categoryId)
+          list=await prisma.product.findMany();
+        }
+
+        console.log("list================",list[0].id);
+
+        if(list && list.length>0){
+          this.response={
+            success:true,
+            message:"product list found",
+            data:list
+          }
+        }else{
+          this.response={ 
+            success:false,
+            message:"product list not found",
+          }
+        }
+        
+               
     } catch (error) {
       console.error(error);
-    }
+    };
+    return this.response;
   }
 
   async updateCategory(params: ParamsDictionary) {

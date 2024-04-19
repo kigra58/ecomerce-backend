@@ -71,4 +71,4 @@ categoryRoute.patch("/update", updateCategory);
  *       200:
  *         description: Returns a mysterious string.
  */
-categoryRoute.get("/category-products", getAllProductsByCategory);
+categoryRoute.get("/products", getAllProductsByCategory);

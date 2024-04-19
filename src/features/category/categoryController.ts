@@ -40,7 +40,7 @@ export const categoryDetails = async (req: Request, res: Response) => {
  * @returns
  */
 export const getAllProductsByCategory = async (req: Request, res: Response) => {
-  const response = await categoryService.getAllProductByCategory(req.params);
+  const response = await categoryService.getAllProductByCategory(req.query);
   return res.status(200).send(response);
 };
 
