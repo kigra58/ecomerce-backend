@@ -10,22 +10,22 @@ class UserService {
 
   async userDetails(params: ParamsDictionary) {
     try {
-      const data = await prisma.user.findUnique({
-        where: { id: Number(params.userId) },
-      });
-      if (data) {
-        this.response = {
-          success: true,
-          message: "user details found",
-          data: [data],
-        };
-      } else {
-        this.response = {
-          success: false,
-          message: "user details not found",
-          data: [],
-        };
-      }
+      // const data = await prisma.user.findUnique({
+      //   where: { id: Number(params.userId) },
+      // });
+      // if (data) {
+      //   this.response = {
+      //     success: true,
+      //     message: "user details found",
+      //     data: [data],
+      //   };
+      // } else {
+      //   this.response = {
+      //     success: false,
+      //     message: "user details not found",
+      //     data: [],
+      //   };
+      // }
     } catch (error) {
       console.error(error);
     }
@@ -63,8 +63,10 @@ class UserService {
   };
 
   async userList(query: ParsedQs){
+    console.log("Hello", query);
     try {
         const list =await prisma.user.findMany();
+        console.log("list",list);
         if(list && list.length>0){
           this.response={
             success:true,

@@ -3,7 +3,8 @@ import { updateUserDetails, userDetails, userList } from "./userController";
 import { validate } from "../../middleware/requestValidation";
 import { userIdValidation } from "./userValidation";
 
-const userRoute = Router();
+export const userRoute = Router();
+console.log("jjjjjjjjjjjjjj")
 
 /**
  * @swagger

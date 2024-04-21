@@ -30,6 +30,7 @@ export const updateUserDetails = (req: Request, res: Response) => {
  * @returns 
  */
 export const userList = (req: Request, res: Response) => {
+    console.log("GGGGGGGGGG")
     const response = userService.userList(req.query);
     return res.status(200).send(response);
 };
