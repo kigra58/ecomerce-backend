@@ -1,0 +1,21 @@
+
+
+enum OrderStatus {
+  shipped
+  cancelled
+  declined
+  refunded
+  partially_refunded
+}
+
+
+model Order {
+  id           Int            @id @default(autoincrement())
+  user_id      Int
+  payment_id   Int
+  total        Int
+  status       OrderStatus
+  created_at   DateTime       @default(now())
+  user         User           @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  OrderHistory OrderHistory[]
+}

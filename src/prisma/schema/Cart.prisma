@@ -1,0 +1,10 @@
+model Cart {
+  id         Int      @id @default(autoincrement())
+  user_id    Int
+  product_id Int      @unique
+  quantity   Int
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  user       User     @relation(fields: [user_id], references: [id])
+  product    Product  @relation(fields: [product_id], references: [id])
+}

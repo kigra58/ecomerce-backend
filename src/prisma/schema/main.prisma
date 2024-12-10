@@ -1,0 +1,17 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// migrateCommand: npx prisma migrate dev --name init
+// npx prisma db push
+// npx prisma migrate dev --create-only
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["PrismaSchemaFolder"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+

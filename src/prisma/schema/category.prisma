@@ -1,0 +1,8 @@
+model Category {
+  id              Int               @id @default(autoincrement())
+  title           String            @unique
+  parent_category String?
+  description     String?
+  products        Product[] // Many-to-many relationship with Product
+  ProductCategory ProductCategory[]
+}

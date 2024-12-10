@@ -1,0 +1,8 @@
+model OrderHistory {
+  id         Int      @id @default(autoincrement())
+  order_id   Int      @unique
+  product_id Int
+  qauntity   Int
+  created_at DateTime @default(now())
+  order      Order    @relation(fields: [order_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+}

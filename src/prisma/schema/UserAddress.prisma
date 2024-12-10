@@ -1,0 +1,19 @@
+enum AddressType {
+  home
+  work
+  other
+}
+
+model UserAddress {
+  id           Int         @id @default(autoincrement())
+  user_id      Int
+  flat_number  String
+  country      String
+  state        String
+  city         String
+  street       String
+  postal_code  Int
+  address_type AddressType
+  mobile       String      @unique
+  user         User        @relation(fields: [user_id], references: [id])
+}

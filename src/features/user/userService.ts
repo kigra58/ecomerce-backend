@@ -32,7 +32,8 @@ class UserService {
     return this.response;
   };
 
-  async updateUserDetails({userId,firstName,lastName,email}:{userId:number,firstName:string;lastName:string,email:string})  {
+  async updateUserDetails({userId,firstName,lastName,email}:
+    {userId:number,firstName:string;lastName:string,email:string})  {
     try {
         const updateUser = await prisma.user.update({
             where: {

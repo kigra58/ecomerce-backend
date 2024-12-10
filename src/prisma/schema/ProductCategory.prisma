@@ -1,0 +1,10 @@
+model ProductCategory {
+    product_id  Int
+    category_id Int
+    product     Product  @relation(fields: [product_id], references: [id])
+    category    Category @relation(fields: [category_id], references: [id])
+    created_at  DateTime @default(now())
+    updated_at  DateTime @default(now())
+
+    @@id([product_id, category_id])
+}
